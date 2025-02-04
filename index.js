@@ -27,7 +27,11 @@ app.get("/api/:date?", function(req, res){
   if(!req.params.date){
     input_date = new Date().getTime();
   }else{
-    input_date = Number(req.params.date);
+    input_date = new Date(req.params.date).getTime();
+    //console.log(input_date);
+    if(!input_date){
+      input_date = Number(req.params.date);
+    }
   }
 
   let utc_date = new Date(input_date).toUTCString();
